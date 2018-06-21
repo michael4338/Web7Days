@@ -17,6 +17,7 @@ namespace Web7Days.Controllers
             return "Hello World is old now. It's time for wassup bro ;)";
         }
 
+        [Authorize]
         public ActionResult GetView()
         {
             Employee emp = new Employee();

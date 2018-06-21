@@ -11,10 +11,24 @@ namespace Web7Days.DataAccessLayer
     public class SalesERPDAL : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
+        private static bool initiation = false;
+
+        public static void Init()
+        {
+            initiation = true;
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer<SalesERPDAL>(null);
+            if (initiation == false)
+            {
+                Init();
+            }
+            else
+            {
+                Database.SetInitializer<SalesERPDAL>(null);
+            }
+    
             modelBuilder.Entity<Employee>().ToTable("Tbl_Employee");
             base.OnModelCreating(modelBuilder);
         } 
