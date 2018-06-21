@@ -17,6 +17,6 @@ namespace Web7Days.DataAccessLayer
             Database.SetInitializer<SalesERPDAL>(null);
             modelBuilder.Entity<Employee>().ToTable("Tbl_Employee");
             base.OnModelCreating(modelBuilder);
-        }
+        } 
     }
 }
