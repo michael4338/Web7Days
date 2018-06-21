@@ -1,0 +1,35 @@
+﻿
+
+@using Web7Days.ViewModels
+@model EmployeeListViewFromDBModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MyListViewDB</title>
+</head>
+
+<body>
+
+    Hello @Model.UserName
+    <hr />
+    <div>
+        <table>
+            <tr>
+                <th>Employee Name</th>
+                <th>Salary</th>
+            </tr>
+            @foreach (EmployeeViewModel item in Model.Employees)
+            {
+                <tr>
+                    <td>@item.EmployeeName</td>
+                    <td style="background-color:@item.SalaryColor">@item.Salary</td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</body>
+</html>

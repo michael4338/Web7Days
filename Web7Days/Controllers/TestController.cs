@@ -39,7 +39,7 @@ namespace Web7Days.Controllers
             List<Employee> employees = new List<Employee>();
             Employee emp = new Employee();
             emp.FirstName = "johnson";
-            emp.LastName = " fernandes";
+            emp.LastName = " fernandes"; 
             emp.Salary = 14000;
             employees.Add(emp);
 
@@ -60,6 +60,35 @@ namespace Web7Days.Controllers
                 employeeListViewModel.Employees.Add(new EmployeeViewModel(e.FirstName,e.LastName,e.Salary,"Admin"));
 
             return View("MyListView", employeeListViewModel);
+        }
+
+        public ActionResult GetViewFromDB()
+        {
+            EmployeeListViewFromDBModel dbModel = new EmployeeListViewFromDBModel("milin");
+            return View("MyListViewDB", dbModel);
+        }
+
+        public ActionResult AddNew()
+        {
+            return View("CreateEmployee");
+        }
+
+        public ActionResult SaveEmployee(Employee e)
+        {
+            // return e.FirstName + "|" + e.LastName + "|" + e.Salary;
+
+            if (ModelState.IsValid)
+            {
+                EmployeeListViewFromDBModel dbModel = new EmployeeListViewFromDBModel("milin");
+                dbModel.SaveEmployee(e);
+                //return new EmptyResult();
+                return RedirectToAction("GetViewFromDB");
+            }
+            else
+            {
+                // return RedirectToAction("AddNew");
+                return View("CreateEmployee");
+            }
         }
     }
 }
